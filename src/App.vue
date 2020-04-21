@@ -2,6 +2,7 @@
 <template lang="html">
     <div>
       <h1>Tweets</h1>
+      <p>Total likes: {{totalLikes}}</p>
       <tweet-list-item v-for="(tweetForLoop, index) in tweetsData" :key="index" :tweetComponentRef="tweetForLoop"></tweet-list-item>
     </div>
 </template>
@@ -45,6 +46,12 @@
 
     components: {
       'tweet-list-item': TweetListItem
+    },
+
+    computed: {
+      totalLikes: function () {
+        return this.tweetsData.reduce((total, tweet) => total + tweet.likes, 0)
+      }
     }
 
   }

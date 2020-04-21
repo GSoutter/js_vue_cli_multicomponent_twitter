@@ -1,8 +1,9 @@
 <template lang="html">
   <ul class="tweet-card">
-    <li id="person-card">{{tweetComponentRef.name}} <img v-bind:src="tweetComponentRef.img" alt="Profile Picture"> <br> ({{tweetComponentRef.handle}})</li>
+    <li id="person-card">{{tweetComponentRef.name}}
+      <img v-bind:src="tweetComponentRef.img" alt="Profile Picture">
+      <br> {{tweetComponentRef.handle}}</li>
     <br>
-    <!-- <li>{{tweetComponentRef.img}}</li> -->
     <li>"{{tweetComponentRef.tweet}}"</li>
     <li>{{tweetComponentRef.likes}} likes</li>
 
