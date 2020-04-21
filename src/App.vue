@@ -27,15 +27,14 @@
           <label for="new-tweet-likes">Likes</label>
             <input id= "new-tweet-likes" type="number" v-model.number="newTweetData.likes"/>
 
-            <!-- <label for="priority">High</label>
-            <input id= "priority" type="radio" v-model="todoPriority" value="High"/>
-            <label for="priority">Low</label>
-
-            <input id= "priority" type="radio" v-model="todoPriority" value="Low"/> -->
             <button type="submit" name="button">Tweet!</button>
         </form>
 
-      <tweet-list-item v-for="(tweetForLoop, index) in tweetsData" :key="index" :tweetComponentRef="tweetForLoop"></tweet-list-item>
+        <label for="filter-tweet">filter by likes</label>
+          <input id= "filter-tweet" type="text" v-model="filterLikeAmount"/>
+
+      <tweet-list-item v-for="(tweetForLoop, index) in filterTweetLike" :key="index" :tweetComponentRef="tweetForLoop"></tweet-list-item>
+
     </div>
 </template>
 
@@ -82,7 +81,8 @@
           img: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
           tweet: "",
           likes: 0,
-        }
+        },
+        filterLikeAmount: 0
       }
       },
 
@@ -95,6 +95,11 @@
       totalLikes: function () {
         return this.tweetsData.reduce((total, tweet) => total + tweet.likes, 0)
       },
+      filterTweetLike: function(){
+        return this.tweetsData.filter((tweet) => tweet.likes >= this.filterLikeAmount)
+
+      }
+
     },
     methods: {
       addTweet: function(){
@@ -107,8 +112,8 @@
           tweet: "",
           likes: 0,
         }
+      },
 
-      }
     }
 
 
