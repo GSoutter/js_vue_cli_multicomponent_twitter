@@ -5,7 +5,7 @@
       <br> {{tweetComponentRef.handle}}</li>
     <br>
     <li>"{{tweetComponentRef.tweet}}"</li>
-    <li>{{tweetComponentRef.likes}} likes</li>
+    <li v-bind:class="tweetHighlightLike">{{tweetComponentRef.likes}} likes</li>
 
   </ul>
 </template>
@@ -15,7 +15,12 @@
 
 export default {
   name: "tweet-list-item",
-  props: ['tweetComponentRef']
+  props: ['tweetComponentRef'],
+  computed: {
+    tweetHighlightLike: function () {
+      return (this.tweetComponentRef.likes >= 12) ? 'big-licks' : 'small-licks'
+    }
+  }
 }
 
 </script>
@@ -39,5 +44,11 @@ img {
 #person-card {
   margin:2px
 }
+
+.big-licks {
+  background-color: gold;
+
+}
+
 
 </style>
